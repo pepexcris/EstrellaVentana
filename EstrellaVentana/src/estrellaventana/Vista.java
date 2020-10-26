@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,8 +27,8 @@ public class Vista extends Frame {
     // private final JLabel ESTRELLA_AMARILLA = new ImageIcon(getClass().getResource("..//assets/... . png");
     private ImageIcon estrellaAmarilla = new ImageIcon(getClass().getResource("..//assets//estrella_amarilla.png"));
     private ImageIcon estrellaAzul = new ImageIcon(getClass().getResource("..//assets//estrella_azul.png"));
-    private final JLabel ESTRELLA_AMARILLA = new JLabel(estrellaAmarilla);
-    private final JLabel ESTRELLA_AZUL = new JLabel(estrellaAzul);
+    private final JLabel ESTRELLA = new JLabel(estrellaAmarilla);
+    //   private final JLabel ESTRELLA_AZUL = new JLabel(estrellaAzul);
 
     private Label lblMuestraTeclaPulsada;
     private Label lblMuestraCoordenadaX;
@@ -36,15 +37,20 @@ public class Vista extends Frame {
     private int x = 0;
     private int y = 0;
     private Controlador controlador;
+    private Panel pArriba;
 
     public Vista(Controlador controlador) {
+
+        this.addWindowListener(controlador);    // Añado el escuchador a la ventana
+
         this.setBounds(500, 350, 300, 200);
         this.setLayout(new GridLayout(3, 0));
 
-        Panel pArriba = new Panel();
+        pArriba = new Panel();
         pArriba.setLayout(new FlowLayout());
         this.add(pArriba);
-        ponerEstrellaAmarilla(pArriba);
+        ponerEstrellaAmarilla();
+        ESTRELLA.addMouseListener(controlador);  // El escuchador a la estrella Amarilla
 
         Panel pMedio = new Panel();
         pMedio.setLayout(new GridLayout(1, 2));
@@ -70,12 +76,14 @@ public class Vista extends Frame {
         this.setVisible(true);
     }
 
-    public void ponerEstrellaAmarilla(Panel pArriba) {
-        pArriba.add(ESTRELLA_AMARILLA);
+    public void ponerEstrellaAmarilla() {
+        pArriba.add(ESTRELLA);
+        ESTRELLA.setIcon(estrellaAmarilla);
+
     }
 
-    public void ponerEstrellaAzul(Panel pArriba) {
-        pArriba.add(ESTRELLA_AZUL);
+    public void ponerEstrellaAzul() {
+        ESTRELLA.setIcon(estrellaAzul);
     }
 
     public void ponerLblMuestraTeclaPulsada(Panel panel) {

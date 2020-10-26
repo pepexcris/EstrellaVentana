@@ -5,16 +5,77 @@
  */
 package estrellaventana;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 /**
  *
  * @author Pepe
  */
-public class Controlador {
+public class Controlador implements WindowListener, MouseListener {
 
     private Vista vista;
 
     public Controlador() {
         vista = new Vista(this);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent we) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent we) {
+        System.exit(0);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent we) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent we) {
+        System.out.println("Se ha minimizado la ventana");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent we) {
+        System.out.println("Se ha restaurado la ventana");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent we) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent we) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {     
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {     
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        System.out.println("Dentro ratón");
+        vista.ponerEstrellaAzul();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        System.out.println("Fuera ratón");
+        vista.ponerEstrellaAmarilla();
     }
 
 }
