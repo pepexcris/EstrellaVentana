@@ -5,6 +5,8 @@
  */
 package estrellaventana;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -14,7 +16,7 @@ import java.awt.event.WindowListener;
  *
  * @author Pepe
  */
-public class Controlador implements WindowListener, MouseListener {
+public class Controlador implements WindowListener, MouseListener, KeyListener {
 
     private Vista vista;
 
@@ -76,6 +78,23 @@ public class Controlador implements WindowListener, MouseListener {
     public void mouseExited(MouseEvent me) {
         System.out.println("Fuera ratón");
         vista.ponerEstrellaAmarilla();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) { 
+        System.out.println("Presionado "+ke.getKeyChar());
+        char tecla= ke.getKeyChar();   
+        vista.setLblMuestraTeclaPulsada(String.valueOf(tecla));
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+       
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+       
     }
 
 }
